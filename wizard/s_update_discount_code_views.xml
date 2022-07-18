@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="s_update_discount_code_view_form" model="ir.ui.view">
+            <field name="name">s_update_discount_code_view_form</field>
+            <field name="model">s.update.discount.code</field>
+            <field name="arch" type="xml">
+                <form string="s_update_discount_code_form">
+
+                    <sheet>
+                        <group>
+                            <field name="partner_ids" widget="many2many_tags" readonly="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="mass_update_discount_code" string="Xac Nhan" type="object"
+                                class="btn-primary"/>
+                        <button string="Huy" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                        <field name="input_numbers"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_partner_inherit_view_form" model="ir.ui.view">
+        <field name="name">Res Partner Inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="active_discount_code"/>
+                <field name="discount_value" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
+                <field name="valid_code" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
+                <field name="sale_order_discount_estimated" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_partner_inherit_view_tree" model="ir.ui.view">
+        <field name="name">Res Partner Inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="valid_code"/>
+                <field name="sale_order_discount_estimated"/>
+                <field name="active_discount_code" type="check_box" optional="show"/>
+                <field name="discount_value" type="check_box" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="s_partner_wizard_action" model="ir.actions.act_window">
+        <field name="name">Update Discount Code</field>
+        <field name="res_model">s.update.discount.code</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_res_partner"/>
+    </record>
+
+</odoo>
