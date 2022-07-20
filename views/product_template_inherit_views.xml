@@ -9,11 +9,9 @@
                 <field name="date_from"/>
                 <field name="date_to"/>
                 <field name="product_warranty"/>
-                <field name="warranty_estimated"/>
+                <field name="warranty_estimated_pt"/>
                 <field name="warranty_left"/>
             </xpath>
-
-
         </field>
     </record>
 
@@ -46,5 +44,16 @@
         <field name="target">new</field>
         <field name="binding_model_id" ref="model_product_template"/>
     </record>
+
+<!--    <record id="coupon_inherit_view_form" model="ir.ui.view">-->
+<!--        <field name="name">coupon Inherit</field>-->
+<!--        <field name="model">coupon.coupon</field>-->
+<!--        <field name="inherit_id" ref="coupon.coupon_view_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='code']" position="after">-->
+<!--                <field name="valid_code_cp"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
 
 </odoo>

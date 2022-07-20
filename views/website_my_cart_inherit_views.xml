@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="cart_lines_warranty" inherit_id="website_sale.cart_lines">
+        <xpath expr="//table[@id='cart_products']/thead/tr/th[3]" position="before">
+            <th class="text-center td-qty">Warranty</th>
+        </xpath>
+        <xpath expr="//table[@id='cart_products']/tbody/t/tr/td[3]" position="after">
+            <td class="text-center td-qty">
+                <span t-field="line.product_warranty_so"/>
+            </td>
+        </xpath>
+
+<!--        <xpath expr="//table[@id='cart_products']/tbody/t/tr/td[6]" position="replace">-->
+<!--            <td class="text-center td-price">-->
+<!--                <span t-field="line.price_total_discount"/>-->
+<!--            </td>-->
+<!--        </xpath>-->
+    </template>
+
+    <template id="cart_lines_vcode" inherit_id="website_sale.total">
+        <xpath expr="//div[@id='cart_total']//table/tr[2]" position="before">
+            <td class="text-right border-0">VipCode :</td>
+        </xpath>
+        <xpath expr="//div[@id='cart_total']//table/tr[2]" position="before">
+            <td class="text-xl-right border-0">
+                <span t-field="website_sale_order.valid_discount_code"/>
+            </td>
+        </xpath>
+    </template>
+
+</odoo>

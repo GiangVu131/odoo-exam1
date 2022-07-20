@@ -11,7 +11,7 @@
 
             </xpath>
             <xpath expr="////field[@name='order_line']/tree/field[20]" position="after">
-                <field name="warranty_estimated_2" />
+                <field name="warranty_estimated_so" />
             </xpath>
         </field>
     </record>

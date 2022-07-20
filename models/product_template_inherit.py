@@ -3,10 +3,10 @@ from odoo import models, fields, api
 
 class ProductTemplateInherit(models.Model):
     _inherit = 'product.template'
-    date_from = fields.Date('Date From')
+    date_from = fields.Date('Date From', groups='exam_1.advanced_sale_group_manager')
     product_warranty = fields.Text('Warranty', compute='_compute_product_warranty')
-    warranty_estimated = fields.Char(compute='_compute_warranty_estimated', string='Warranty Estimated')
-    date_to = fields.Date('Date To')
+    warranty_estimated_pt = fields.Char(compute='_compute_warranty_estimated_pt', string='Warranty Estimated')
+    date_to = fields.Date('Date To', groups='exam_1.advanced_sale_group_manager')
     warranty_left = fields.Char(string='Days Warranty Left', compute='_compute_warranty_left')
     list_price = fields.Monetary('List Price')
 
@@ -37,26 +37,28 @@ class ProductTemplateInherit(models.Model):
                 else:
                     pass
             else:
-                r.warranty_left = 0
+                r.warranty_left = 'No warranty'
 
     @api.depends('date_to', 'date_from')
-    def _compute_warranty_estimated(self):
+    def _compute_warranty_estimated_pt(self):
         for r in self:
             if r.date_to and r.date_to < fields.Date.today():
-                r.warranty_estimated = '10%'
+                r.warranty_estimated_pt = '10%'
             elif r.date_to is True and r.date_from is True:
-                r.warranty_estimated = ''
+                r.warranty_estimated_pt = ''
             elif r.date_to is False and r.date_from is False:
-                r.warranty_estimated = '10%'
+                r.warranty_estimated_pt = '10%'
             else:
-                r.warranty_estimated = ''
+                r.warranty_estimated_pt = ''
 
     @api.depends('date_to', 'date_from')
     def _compute_product_warranty(self):
         for r in self:
             if r.date_to is False and r.date_from is False:
-                r.product_warranty = ''
+                r.product_warranty = 'No Warranty'
             else:
                 r.product_warranty = 'PWR/' + str(r.date_from)[5:7] + str(r.date_from)[8:10] + str(r.date_from)[
                                                                                                2:4] + '/' + str(
                     r.date_to)[5:7] + str(r.date_to)[8:10] + str(r.date_to)[2:4]
+
+

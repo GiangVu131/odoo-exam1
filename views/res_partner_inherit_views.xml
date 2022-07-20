@@ -10,7 +10,7 @@
                 <field name="active_discount_code"/>
                 <field name="discount_value" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
                 <field name="valid_code" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
-                <field name="sale_order_discount_estimated" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
+<!--                <field name="sale_order_discount_estimated" attrs="{'invisible':[('active_discount_code','=',False)]}"/>-->
             </xpath>
         </field>
     </record>
@@ -21,10 +21,10 @@
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="valid_code"/>
-                <field name="sale_order_discount_estimated"/>
+                <field name="valid_code" optional="show"/>
+<!--                <field name="sale_order_discount_estimated"/>-->
                 <field name="active_discount_code" type="check_box" optional="show"/>
-                <field name="discount_value" type="check_box" optional="show"/>
+<!--                <field name="discount_value" type="check_box" optional="show"/>-->
             </xpath>
         </field>
     </record>

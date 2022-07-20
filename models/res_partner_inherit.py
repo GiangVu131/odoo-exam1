@@ -4,8 +4,8 @@ from odoo import api, models, fields
 class ResInherit(models.Model):
     _inherit = 'res.partner'
     discount_value = fields.Integer('Discount Value', compute='_compute_discount_value', store=True,
-                                    groups='exam_1.advanced_sale_group_manager')
-    valid_code = fields.Char(compute='_compute_valid_code', string='Valid Code')
+                                    groups='exam_1.advanced_sale_group_manager', readonly=False)
+    valid_code = fields.Char(compute='_compute_valid_code', string='Valid Code', store=True)
     sale_order_discount_estimated = fields.Char(string='Discount estimated', compute='_percent')
     active_discount_code = fields.Boolean(string='Active Code', default=False)
     Sale_order_discount_estimated = fields.Monetary(string='Discount Estimated')

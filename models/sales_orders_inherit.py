@@ -7,7 +7,7 @@ class SalesOrdersInherit(models.Model):
     valid_discount_code = fields.Char(string='Valid Code', related='partner_id.valid_code', store=True)
     discount_estimated = fields.Char(string='Discount Estimated',
                                      related='partner_id.sale_order_discount_estimated', store=True)
-    discount_value_relate_1 = fields.Integer(string='', related='partner_id.discount_value')
+    discount_value_relate_s = fields.Integer(string='', related='partner_id.discount_value')
     amount_untaxed = fields.Monetary(store=True, compute='_amount_all_123')
     tax_totals_json = fields.Char(compute='_compute_tax_totals_json')
 
@@ -24,10 +24,10 @@ class SalesOrdersInherit(models.Model):
                 'amount_tax': amount_tax,
             })
 
-    @api.depends('order_line.tax_id', 'order_line.warranty_discount_total_2', 'amount_total', 'amount_untaxed')
+    @api.depends('order_line.tax_id', 'order_line.warranty_discount_total_so', 'amount_total', 'amount_untaxed')
     def _compute_tax_totals_json(self):
         def compute_taxes(order_line):
-            price = order_line.warranty_discount_total_2 * (1 - (order_line.discount or 0.0) / 100.0)
+            price = order_line.warranty_discount_total_so * (1 - (order_line.discount or 0.0) / 100.0)
             order = order_line.order_id
             return order_line.tax_id._origin.compute_all(price, order.currency_id, order_line.product_uom_qty,
                                                          product=order_line.product_id,

@@ -1,5 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_res_partner_user,res_partner_user,model_res_partner,advanced_sale_group_user,1,0,0,0
-access_res_partner_manager,res_partner_manager,model_res_partner,advanced_sale_group_manager,1,0,0,0
+access_res_partner_user,res_partner_user,model_res_partner,advanced_sale_group_user,0,0,0,0
+access_res_partner_manager,res_partner_manager,model_res_partner,advanced_sale_group_manager,1,1,1,1
 access_s_update_discount_code,s_update_discount_code,model_s_update_discount_code,,1,1,1,1
 access_s_update_warranty,s_update_warranty,model_s_update_warranty,,1,1,1,1
+
