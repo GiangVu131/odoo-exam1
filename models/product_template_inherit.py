@@ -4,8 +4,8 @@ from odoo import models, fields, api
 class ProductTemplateInherit(models.Model):
     _inherit = 'product.template'
     date_from = fields.Date('Date From')
-    product_warranty = fields.Text('Warranty', compute='_compute_product_warranty')
-    warranty_estimated_pt = fields.Char(compute='_compute_warranty_estimated_pt', string='Warranty Estimated')
+    product_warranty = fields.Text('Product Warranty', compute='_compute_product_warranty')
+    warranty_estimated_pt = fields.Char(compute='_compute_warranty_estimated_pt', string='Warranty Discount')
     date_to = fields.Date('Date To')
     warranty_left = fields.Char(string='Days Warranty Left', compute='_compute_warranty_left', store=True)
     list_price = fields.Monetary('List Price')
@@ -60,3 +60,13 @@ class ProductTemplateInherit(models.Model):
                 r.product_warranty = 'PWR/' + str(r.date_from)[5:7] + str(r.date_from)[8:10] + str(r.date_from)[
                                                                                                2:4] + '/' + str(
                     r.date_to)[5:7] + str(r.date_to)[8:10] + str(r.date_to)[2:4]
+
+    @api.constrains('date_from', 'date_to')
+    def _check_date(self):
+        for r in self:
+            if not r.date_from and r.date_to:
+                raise models.ValidationError('Must have Date From')
+            elif not r.date_to and r.date_from:
+                raise models.ValidationError('Must have Date To')
+            elif r.date_from > r.date_to:
+                raise models.ValidationError('Date To must be > Date From')

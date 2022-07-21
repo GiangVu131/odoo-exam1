@@ -20,11 +20,10 @@
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="valid_code" optional="show"/>
-                <field name="active_discount_code" type="check_box" optional="show"/>
+                <field name="valid_code" optional="show" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="active_discount_code" type="check_box" optional="show" groups="exam_1.advanced_sale_group_manager"/>
             </xpath>
         </field>
     </record>
-
 
 </odoo>
