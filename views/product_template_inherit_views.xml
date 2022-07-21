@@ -37,23 +37,4 @@
         </field>
     </record>
 
-    <record id="action_product_template_warranty" model="ir.actions.act_window">
-        <field name="name">Update warranty</field>
-        <field name="res_model">s.update.warranty</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-        <field name="binding_model_id" ref="model_product_template"/>
-    </record>
-
-<!--    <record id="coupon_inherit_view_form" model="ir.ui.view">-->
-<!--        <field name="name">coupon Inherit</field>-->
-<!--        <field name="model">coupon.coupon</field>-->
-<!--        <field name="inherit_id" ref="coupon.coupon_view_form"/>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <xpath expr="//field[@name='code']" position="after">-->
-<!--                <field name="valid_code_cp"/>-->
-<!--            </xpath>-->
-<!--        </field>-->
-<!--    </record>-->
-
 </odoo>

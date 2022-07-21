@@ -26,8 +26,8 @@
     'data': [
         'security/group_advanced_sale.xml',
         'security/ir.model.access.csv',
-        'wizard/s_update_discount_code_views.xml',
         'wizard/s_update_warranty_views.xml',
+        'wizard/s_update_discount_code_views.xml',
         'views/res_partner_inherit_views.xml',
         'views/sales_orders_inherit_views.xml',
         'views/sales_orders_line_inherit_view.xml',

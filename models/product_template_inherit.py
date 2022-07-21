@@ -7,7 +7,7 @@ class ProductTemplateInherit(models.Model):
     product_warranty = fields.Text('Warranty', compute='_compute_product_warranty')
     warranty_estimated_pt = fields.Char(compute='_compute_warranty_estimated_pt', string='Warranty Estimated')
     date_to = fields.Date('Date To', groups='exam_1.advanced_sale_group_manager')
-    warranty_left = fields.Char(string='Days Warranty Left', compute='_compute_warranty_left')
+    warranty_left = fields.Char(string='Days Warranty Left', compute='_compute_warranty_left', store=True)
     list_price = fields.Monetary('List Price')
 
     @api.depends('list_price', 'sale_order_discount_estimated')
@@ -60,5 +60,3 @@ class ProductTemplateInherit(models.Model):
                 r.product_warranty = 'PWR/' + str(r.date_from)[5:7] + str(r.date_from)[8:10] + str(r.date_from)[
                                                                                                2:4] + '/' + str(
                     r.date_to)[5:7] + str(r.date_to)[8:10] + str(r.date_to)[2:4]
-
-

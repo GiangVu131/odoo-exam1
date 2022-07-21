@@ -10,7 +10,6 @@
                 <field name="active_discount_code"/>
                 <field name="discount_value" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
                 <field name="valid_code" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
-<!--                <field name="sale_order_discount_estimated" attrs="{'invisible':[('active_discount_code','=',False)]}"/>-->
             </xpath>
         </field>
     </record>
@@ -22,19 +21,10 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="valid_code" optional="show"/>
-<!--                <field name="sale_order_discount_estimated"/>-->
                 <field name="active_discount_code" type="check_box" optional="show"/>
-<!--                <field name="discount_value" type="check_box" optional="show"/>-->
             </xpath>
         </field>
     </record>
 
-    <record id="s_partner_wizard_action" model="ir.actions.act_window">
-        <field name="name">Update Discount Code</field>
-        <field name="res_model">s.update.discount.code</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-        <field name="binding_model_id" ref="model_res_partner"/>
-    </record>
 
 </odoo>
