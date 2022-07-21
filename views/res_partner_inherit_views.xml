@@ -7,9 +7,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="active_discount_code"/>
-                <field name="discount_value" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
-                <field name="valid_code" attrs="{'invisible':[('active_discount_code','=',False)]}"/>
+                <field name="active_discount_code" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="discount_value" attrs="{'invisible':[('active_discount_code','=',False)]}" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="valid_code" attrs="{'invisible':[('active_discount_code','=',False)]}" groups="exam_1.advanced_sale_group_manager"/>
             </xpath>
         </field>
     </record>

@@ -3,10 +3,10 @@ from odoo import models, fields, api
 
 class ProductTemplateInherit(models.Model):
     _inherit = 'product.template'
-    date_from = fields.Date('Date From', groups='exam_1.advanced_sale_group_manager')
+    date_from = fields.Date('Date From')
     product_warranty = fields.Text('Warranty', compute='_compute_product_warranty')
     warranty_estimated_pt = fields.Char(compute='_compute_warranty_estimated_pt', string='Warranty Estimated')
-    date_to = fields.Date('Date To', groups='exam_1.advanced_sale_group_manager')
+    date_to = fields.Date('Date To')
     warranty_left = fields.Char(string='Days Warranty Left', compute='_compute_warranty_left', store=True)
     list_price = fields.Monetary('List Price')
 

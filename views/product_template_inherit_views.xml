@@ -6,11 +6,11 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_policy']" position="after">
-                <field name="date_from"/>
-                <field name="date_to"/>
-                <field name="product_warranty"/>
-                <field name="warranty_estimated_pt"/>
-                <field name="warranty_left"/>
+                <field name="date_from" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="date_to" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="product_warranty" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="warranty_estimated_pt" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="warranty_left" groups="exam_1.advanced_sale_group_manager"/>
             </xpath>
         </field>
     </record>

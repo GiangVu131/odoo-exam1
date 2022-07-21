@@ -18,7 +18,7 @@
         <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="inside">
-                <field name="valid_discount_code" />
+                <field name="valid_discount_code"/>
             </xpath>
         </field>
     </record>
@@ -34,4 +34,10 @@
         </field>
     </record>
 
+    <menuitem
+            id="contacts.res_partner_menu_contacts"
+            name="Customer Has Valid Code"
+            parent="sale.sale_order_menu"
+            sequence="4"/>
+    
 </odoo>
