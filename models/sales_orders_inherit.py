@@ -4,11 +4,15 @@ import json
 
 class SalesOrdersInherit(models.Model):
     _inherit = 'sale.order'
-    valid_discount_code = fields.Char(string='Valid Code', related='partner_id.valid_code', store=True)
-    discount_estimated = fields.Char(string='Discount Estimated',
-                                     related='partner_id.sale_order_discount_estimated', store=True)
-    discount_value_relate_s = fields.Integer(string='', related='partner_id.discount_value')
-    amount_untaxed = fields.Monetary(store=True, compute='_amount_all_123')
+
+    customer_discount_code_so = fields.Text(string='Valid Code', related='partner_id.customer_discount_code',
+                                            store=True)
+    active_discount_code_so = fields.Boolean(related='partner_id.active_discount_code', string='Active Code')
+    sale_order_discount_estimated_so = fields.Char(string='Discount Estimated',
+                                                   related='partner_id.sale_order_discount_estimated')
+    number_value_so = fields.Integer(related='partner_id.number_value')
+
+    amount_untaxed = fields.Monetary(compute='_amount_all_123')
     tax_totals_json = fields.Char(compute='_compute_tax_totals_json')
 
     @api.depends('order_line.price_total_discount')

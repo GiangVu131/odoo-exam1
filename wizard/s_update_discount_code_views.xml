@@ -11,10 +11,10 @@
                     </group>
                 </sheet>
                 <footer>
+                    <field name="input_customer_discount_code" placeholder="e.g. Valid code format VIP + ‘_’ + Integer"/>
                     <button name="mass_update_discount_code" string="Confirm" type="object"
                             class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
-                    <field name="input_numbers"/>
                 </footer>
             </form>
         </field>

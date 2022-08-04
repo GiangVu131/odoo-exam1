@@ -23,7 +23,7 @@
         </xpath>
         <xpath expr="//div[@id='cart_total']//table/tr[2]" position="before">
             <td class="text-xl-right border-0">
-                <span t-field="website_sale_order.valid_discount_code"/>
+                <span t-field="website_sale_order.customer_discount_code_so"/>
             </td>
         </xpath>
     </template>

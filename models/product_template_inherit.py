@@ -3,11 +3,11 @@ from odoo import models, fields, api
 
 class ProductTemplateInherit(models.Model):
     _inherit = 'product.template'
-    date_from = fields.Date('Date From')
+    date_from = fields.Date('Date Start')
     product_warranty = fields.Text('Product Warranty', compute='_compute_product_warranty')
-    warranty_estimated_pt = fields.Char(compute='_compute_warranty_estimated_pt', string='Warranty Discount')
-    date_to = fields.Date('Date To')
-    warranty_left = fields.Char(string='Days Warranty Left', compute='_compute_warranty_left', store=True)
+    sale_order_discount_estimated_pt = fields.Char(compute='_compute_sale_order_discount_estimated_pt', string='Warranty Discount')
+    date_to = fields.Date('Date End')
+    warranty_left = fields.Char(string='Days Warranty Left', compute='_compute_warranty_left')
     list_price = fields.Monetary('List Price')
 
     @api.depends('list_price', 'sale_order_discount_estimated')
@@ -40,16 +40,16 @@ class ProductTemplateInherit(models.Model):
                 r.warranty_left = 'No warranty'
 
     @api.depends('date_to', 'date_from')
-    def _compute_warranty_estimated_pt(self):
+    def _compute_sale_order_discount_estimated_pt(self):
         for r in self:
             if r.date_to and r.date_to < fields.Date.today():
-                r.warranty_estimated_pt = '10%'
+                r.sale_order_discount_estimated_pt = '10%'
             elif r.date_to is True and r.date_from is True:
-                r.warranty_estimated_pt = ''
+                r.sale_order_discount_estimated_pt = ''
             elif r.date_to is False and r.date_from is False:
-                r.warranty_estimated_pt = '10%'
+                r.sale_order_discount_estimated_pt = '10%'
             else:
-                r.warranty_estimated_pt = ''
+                r.sale_order_discount_estimated_pt = ''
 
     @api.depends('date_to', 'date_from')
     def _compute_product_warranty(self):
@@ -65,8 +65,8 @@ class ProductTemplateInherit(models.Model):
     def _check_date(self):
         for r in self:
             if not r.date_from and r.date_to:
-                raise models.ValidationError('Must have Date From')
+                raise models.ValidationError('Must have Date Start')
             elif not r.date_to and r.date_from:
-                raise models.ValidationError('Must have Date To')
+                raise models.ValidationError('Must have Date End')
             elif r.date_from > r.date_to:
-                raise models.ValidationError('Date To must be > Date From')
+                raise models.ValidationError('Date End must be > Date Start')

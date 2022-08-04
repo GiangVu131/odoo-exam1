@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="sale.view_sales_order_filter"/>
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='my_sale_orders_filter']" position="before">
-                <field name="valid_discount_code"/>
+                <filter name="discount" string="Special Customer" domain="[('active_discount_code_so','=',True)]"/>
             </xpath>
         </field>
     </record>
@@ -18,7 +18,8 @@
         <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="inside">
-                <field name="valid_discount_code"/>
+                <field name="customer_discount_code_so"/>
+                <field name="active_discount_code_so" invisible="1"/>
             </xpath>
         </field>
     </record>
@@ -29,15 +30,10 @@
         <field name="inherit_id" ref="sale.view_order_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//tree" position="inside">
-                <field name="valid_discount_code" optional="show"/>
+                <field name="customer_discount_code_so" optional="show"/>
             </xpath>
         </field>
     </record>
 
-    <menuitem
-            id="contacts.res_partner_menu_contacts"
-            name="Customer Has Valid Code"
-            parent="sale.sale_order_menu"
-            sequence="4"/>
-    
+
 </odoo>

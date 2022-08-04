@@ -5,20 +5,27 @@ from odoo import models, fields, api
 
 class SalesOrdersLineInherit(models.Model):
     _inherit = 'sale.order.line'
-    discount_estimated_used = fields.Char(related='order_id.discount_estimated', string='Customer Discount')
-    valid_discount_code_so = fields.Char(related='order_id.valid_discount_code')
-    discount_value_relate_so = fields.Integer(related='order_id.discount_value_relate_s', string='Number value')
+    sale_order_discount_estimated_sol = fields.Char(related='order_id.sale_order_discount_estimated_so',
+                                                    string='Customer Discount')
+
+    number_value_so = fields.Integer(related='order_id.number_value_so')
     price_total_discount = fields.Monetary(compute='_compute_discount', string='Price Subtotal')
-    warranty_estimated_so = fields.Char(related='product_id.warranty_estimated_pt', string='Product Discount')
+    warranty_estimated_so = fields.Char(related='product_id.sale_order_discount_estimated_pt', string='Product Discount')
     product_warranty_so = fields.Text(string='', related='product_id.product_warranty')
     warranty_discount_total_so = fields.Float(string='', compute='_compute_warranty_discount_total')
+    numbers_percent = fields.Char(compute='_compute_numbers_percent', string='Customer discount')
 
-    @api.depends('price_subtotal', 'discount_value_relate_so')
+    @api.depends('number_value_so')
+    def _compute_numbers_percent(self):
+        for rec in self:
+            rec.numbers_percent = str(rec.number_value_so) + '%'
+
+    @api.depends('price_subtotal', 'number_value_so')
     def _compute_discount(self):
         for r in self:
-            r.price_total_discount = r.price_subtotal - ((r.price_subtotal * r.discount_value_relate_so) / 100)
+            r.price_total_discount = r.price_subtotal - ((r.price_subtotal * r.number_value_so) / 100)
 
-    @api.depends('price_unit', 'warranty_estimated_so')
+    @api.depends('price_unit')
     def _compute_warranty_discount_total(self):
         for record in self:
             if not record.warranty_estimated_so:

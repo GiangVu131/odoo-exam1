@@ -30,6 +30,7 @@
         'wizard/s_update_discount_code_views.xml',
         'views/res_partner_inherit_views.xml',
         'views/sales_orders_inherit_views.xml',
+        'views/special_customer_views.xml',
         'views/sales_orders_line_inherit_view.xml',
         'views/product_template_inherit_views.xml',
         'views/website_my_cart_inherit_views.xml',

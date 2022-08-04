@@ -4,7 +4,7 @@ from odoo import fields, models, api
 class SPopupDiscountCode(models.TransientModel):
     _name = 's.update.discount.code'
     _description = 'Update discount code'
-    input_numbers = fields.Integer(string='')
+    input_customer_discount_code = fields.Text(string='Update Code')
 
     def _get_default_partner_ids(self):
         partner_ids = self.env.context.get('active_ids')
@@ -18,4 +18,4 @@ class SPopupDiscountCode(models.TransientModel):
     def mass_update_discount_code(self):
         self.ensure_one()
         for re in self.partner_ids:
-            re.discount_value = re.discount_value + self.input_numbers
+            re.customer_discount_code = self.input_customer_discount_code

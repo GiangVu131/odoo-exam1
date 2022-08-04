@@ -7,9 +7,12 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="active_discount_code" groups="exam_1.advanced_sale_group_manager"/>
-                <field name="discount_value" attrs="{'invisible':[('active_discount_code','=',False)]}" groups="exam_1.advanced_sale_group_manager"/>
-                <field name="valid_code" attrs="{'invisible':[('active_discount_code','=',False)]}" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="active_discount_code"/>
+                <field name="number_value"/>
+                <field name="customer_discount_code" readonly="0"
+                       placeholder="e.g. Valid code format VIP + ‘_’ + Integer"
+                       groups="exam_1.advanced_sale_group_user"
+                       attrs="{'invisible': [('active_discount_code', '=', False)]}"/>
             </xpath>
         </field>
     </record>
@@ -20,8 +23,8 @@
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="valid_code" optional="show" groups="exam_1.advanced_sale_group_manager"/>
-                <field name="active_discount_code" type="check_box" optional="show" groups="exam_1.advanced_sale_group_manager"/>
+                <field name="customer_discount_code" optional="show"/>
+                <field name="active_discount_code" type="check_box" optional="show"/>
             </xpath>
         </field>
     </record>
