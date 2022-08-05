@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_special_product" model="ir.actions.act_window">
+        <field name="name">Special Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="domain">['|',
+            ('date_to','&gt;',context_today().strftime('%Y-%m-%d')),
+            ('date_to','&lt;',context_today().strftime('%Y-%m-%d'))]
+        </field>
+    </record>
+
+    <menuitem
+            id="action_special_product"
+            name="Special product"
+            action="action_special_product"
+            parent="sale.product_menu_catalog"
+            sequence="4"/>
+</odoo>

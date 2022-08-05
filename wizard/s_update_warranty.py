@@ -4,7 +4,10 @@ from odoo import fields, models, api
 class SPopupWarranty(models.TransientModel):
     _name = 's.update.warranty'
     _description = 'Update Warranty'
-    input_date = fields.Date(string='Change Date')
+    input_date_from = fields.Date(string='Change Date Start')
+    input_date_to = fields.Date(string='Change Date End')
+    date_from_update = fields.Date(related='product_ids.date_from', string='Date Start')
+    date_to_update = fields.Date(related='product_ids.date_to', string='Date End')
 
     def _get_default_product_ids(self):
         product_ids = self.env.context.get('active_ids')
@@ -16,4 +19,5 @@ class SPopupWarranty(models.TransientModel):
     def mass_update_warranty(self):
         self.ensure_one()
         for r in self.product_ids:
-            r.date_to = self.input_date
+            r.date_from = self.input_date_from
+            r.date_to = self.input_date_to

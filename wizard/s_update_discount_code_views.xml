@@ -7,7 +7,7 @@
             <form string="s_update_discount_code_form">
                 <sheet>
                     <group>
-                        <field name="partner_ids" widget="many2many_tags" readonly="1"/>
+                        <field name="order_ids" widget="many2many_tags" readonly="1"/>
                     </group>
                 </sheet>
                 <footer>
@@ -25,7 +25,7 @@
         <field name="res_model">s.update.discount.code</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="binding_model_id" ref="model_res_partner"/>
+        <field name="binding_model_id" ref="model_sale_order"/>
     </record>
 
 </odoo>

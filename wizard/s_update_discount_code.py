@@ -13,9 +13,9 @@ class SPopupDiscountCode(models.TransientModel):
             #     # rec.partner_ids == [(6, 0, partner_ids)]
             return [(6, 0, partner_ids)]
 
-    partner_ids = fields.Many2many('res.partner', string='Customer Discount', default=_get_default_partner_ids)
+    order_ids = fields.Many2many('sale.order', string='Customer Discount', default=_get_default_partner_ids)
 
     def mass_update_discount_code(self):
         self.ensure_one()
-        for re in self.partner_ids:
-            re.customer_discount_code = self.input_customer_discount_code
+        for re in self.order_ids:
+            re.customer_discount_code_so = self.input_customer_discount_code

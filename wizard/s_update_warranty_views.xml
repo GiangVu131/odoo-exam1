@@ -10,8 +10,19 @@
                         <field name="product_ids" widget="many2many_tags" readonly="1"/>
                     </group>
                 </sheet>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="input_date_from"/>
+                            <field name="input_date_to"/>
+                        </group>
+                        <group>
+                            <field name="date_from_update"/>
+                            <field name="date_to_update"/>
+                        </group>
+                    </group>
+                </sheet>
                 <footer>
-                    <field name="input_date"/>
                     <button name="mass_update_warranty" string="Confirm" type="object"
                             class="btn-primary"/>
                     <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>

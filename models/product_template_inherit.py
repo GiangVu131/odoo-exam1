@@ -5,8 +5,9 @@ class ProductTemplateInherit(models.Model):
     _inherit = 'product.template'
     date_from = fields.Date('Date Start')
     product_warranty = fields.Text('Product Warranty', compute='_compute_product_warranty')
-    sale_order_discount_estimated_pt = fields.Char(compute='_compute_sale_order_discount_estimated_pt', string='Warranty Discount')
-    date_to = fields.Date('Date End')
+    sale_order_discount_estimated_pt = fields.Char(compute='_compute_sale_order_discount_estimated_pt',
+                                                   string='Warranty Discount')
+    date_to = fields.Date('Date End', store=True)
     warranty_left = fields.Char(string='Days Warranty Left', compute='_compute_warranty_left')
     list_price = fields.Monetary('List Price')
 
@@ -68,5 +69,5 @@ class ProductTemplateInherit(models.Model):
                 raise models.ValidationError('Must have Date Start')
             elif not r.date_to and r.date_from:
                 raise models.ValidationError('Must have Date End')
-            elif r.date_from > r.date_to:
+            if r.date_from > r.date_to:
                 raise models.ValidationError('Date End must be > Date Start')

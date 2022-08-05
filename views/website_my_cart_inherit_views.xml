@@ -9,12 +9,6 @@
                 <span t-field="line.product_warranty_so"/>
             </td>
         </xpath>
-
-<!--        <xpath expr="//table[@id='cart_products']/tbody/t/tr/td[6]" position="replace">-->
-<!--            <td class="text-center td-price">-->
-<!--                <span t-field="line.price_total_discount"/>-->
-<!--            </td>-->
-<!--        </xpath>-->
     </template>
 
     <template id="cart_lines_vcode" inherit_id="website_sale.total">
